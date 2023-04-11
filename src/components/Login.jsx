@@ -1,13 +1,16 @@
 import { signInWithPopup } from 'firebase/auth';
 import React from 'react'
 import { auth, provider } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
 
+const Login = ({ setIsAuth }) => {
+  const navigate = useNavigate();
   const loginInwithGoogle = () => {
-    // Googleでログイン
-    signInWithPopup(auth,provider).then((result)=> {
-
+    signInWithPopup(auth, provider).then((result) => {// Googleでログイン
+      localStorage.setItem("isAuth", true);// ローカルストレージにログインしている状態を保存
+      setIsAuth(true);
+      navigate("/");
     });
   }
   return (
@@ -19,3 +22,4 @@ const Login = () => {
 }
 
 export default Login
+
