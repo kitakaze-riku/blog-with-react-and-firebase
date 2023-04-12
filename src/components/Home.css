@@ -40,7 +40,7 @@
 }
 
 .nameAndDeleteButton button {
-    width: 10%;
+    width: 20%;
     background-color: #d36262;
     color: #fff;
     padding: 7px 15px;
@@ -55,5 +55,5 @@
 }
 
 .nameAndDeleteButton h3 {
-    width: 90%;
+    width: 80%;
 }

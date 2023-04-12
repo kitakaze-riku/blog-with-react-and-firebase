@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./Home.css";
-import { collection, getDocs } from "firebase/firestore";//{}は名前付きインポート
-import { db } from "../firebase";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";//{}は名前付きインポート
+import { db, app, auth } from "../firebase";
 
-const Home = () => {
+const Home = ({ isAuth }) => {
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,11 @@ const Home = () => {
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getPosts();
-  }, [])
+  }, [postList]);
+
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, "posts", id));
+  }
 
   return (
     <div className="homePage">
@@ -29,7 +33,15 @@ const Home = () => {
             </div>
             <div className="nameAndDeleteButton">
               <h3>@{post.auther.username}</h3>
-              <button>削除</button>
+              {/* {isAuth ? (
+                <button onClick={() => handleDelete(post.id)}>削除</button>
+              ) : (
+                <button className='disabledBtn' disabled>削除できません</button>
+              )} */}
+              {/* オプショナルチェイン演算子を用いてauth.currentUserがnullの場合でもundifindを返しプログラムをクラッシュさせないようにする */}
+              {post.auther.id === auth.currentUser?.uid && (
+                <button onClick={() => handleDelete(post.id)}>削除</button>
+              )}
             </div>
           </div>
         )
