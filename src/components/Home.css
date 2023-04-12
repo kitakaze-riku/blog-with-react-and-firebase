@@ -6,10 +6,13 @@
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .homePage .postContents {
-    width: 600px;
+    /* width: 600px;
+    max-width: 600px; */
+    width: 80%;
     height: auto;
     max-height: 600px;
     background: #fff;
