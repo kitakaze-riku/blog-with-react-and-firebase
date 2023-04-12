@@ -6,7 +6,7 @@ import { faHouse, faFilePen, faArrowRightToBracket } from '@fortawesome/free-sol
 
 
 
-const Navber = () => {
+const Navber = ({ isAuth }) => {
     return (
         <nav>
             <Link to="/">
@@ -15,12 +15,22 @@ const Navber = () => {
             </Link>
             <Link to="/createpost">
                 <FontAwesomeIcon icon={faFilePen} />
-                記事投稿</Link>
-            <Link to="/login">
-                <FontAwesomeIcon icon={faArrowRightToBracket} />
-                ログイン</Link>
+                記事投稿
+            </Link>
+            {/* isAuthの値をキーにしてログイン、ログアウトのボタンを切り替える。 */}
+            {!isAuth ? (
+                <Link to="/login">
+                    <FontAwesomeIcon icon={faArrowRightToBracket} />
+                    ログイン
+                </Link>
+            ) : (
+                <Link to="/logout">
+                    <FontAwesomeIcon icon={faArrowRightToBracket} />
+                    ログアウト
+                </Link>
+            )}
         </nav>
-    )
-}
+    );
+};
 
 export default Navber
