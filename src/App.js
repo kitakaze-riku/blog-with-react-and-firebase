@@ -11,7 +11,7 @@ import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   // ログインしているかどうかの状態変数をsetIsAuthで管理　ログインしていなかったらfalse
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   return (
     <Router>
       <Navber isAuth={isAuth} />{/* ログイン状態を渡す */}
