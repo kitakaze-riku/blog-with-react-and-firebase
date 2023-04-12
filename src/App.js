@@ -14,10 +14,10 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   return (
     <Router>
-      <Navber isAuth={isAuth}/>
+      <Navber isAuth={isAuth} />
       <Routes>
         <Route path='/' element={<Home />}></Route>
-        <Route path='/createpost' element={<CreatePost />}></Route>
+        <Route path='/createpost' element={<CreatePost isAuth={isAuth} />}></Route>
         <Route path='/login' element={<Login setIsAuth={setIsAuth} />}></Route> {/*ログイン状態をlogin.jsxに渡す*/}
         <Route path='/logout' element={<Logout setIsAuth={setIsAuth} />}></Route>
       </Routes>

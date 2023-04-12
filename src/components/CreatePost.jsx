@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./CreatePost.css";
 import { collection, addDoc } from "firebase/firestore";//{}は名前付きインポート
 import { auth, db } from "../firebase";
@@ -6,10 +6,17 @@ import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
-const CreatePost = () => {
+const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState();
   const [postText, setPostText] = useState();
   const navigate = useNavigate();
+
+  // ログインしていないユーザが入ってきた場合リダイレクトさせる。
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    };
+  }, []);
 
   const createPost = async () => {
     await addDoc(collection(db, "posts"), {

@@ -13,10 +13,6 @@ const Navber = ({ isAuth }) => {
                 <FontAwesomeIcon icon={faHouse} />
                 ホーム
             </Link>
-            <Link to="/createpost">
-                <FontAwesomeIcon icon={faFilePen} />
-                記事投稿
-            </Link>
             {/* isAuthの値をキーにしてログイン、ログアウトのボタンを切り替える。 */}
             {!isAuth ? (
                 <Link to="/login">
@@ -24,10 +20,16 @@ const Navber = ({ isAuth }) => {
                     ログイン
                 </Link>
             ) : (
-                <Link to="/logout">
-                    <FontAwesomeIcon icon={faArrowRightToBracket} />
-                    ログアウト
-                </Link>
+                <>
+                    <Link to="/createpost">
+                        <FontAwesomeIcon icon={faFilePen} />
+                        記事投稿
+                    </Link>
+                    <Link to="/logout">
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                        ログアウト
+                    </Link>
+                </>
             )}
         </nav>
     );
